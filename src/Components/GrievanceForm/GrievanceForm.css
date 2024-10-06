@@ -1,0 +1,101 @@
+.grievForm {
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    min-height: 100vh; /* Full height of the viewport */
+    background: linear-gradient(to bottom, #7a4d73, black); /* Set the gradient background */
+}
+
+.outerForm {
+    width: 100%; /* Full width within the parent */
+    max-width: 500px; /* Limit maximum width for elegance */
+    margin: 20px; /* Margin around the form */
+    border: black; /* Border color */
+    border-radius: 10px; /* Rounded corners */
+    background-color: white; /* White background for the outer form */
+    
+   
+}
+
+.grievForm h1, .grievForm h2, .grievForm h3 {
+    text-align: center;
+    color: white; 
+    font-size: 30px;
+}
+
+.grievForm h2{
+    border-color: #f8f9fa;
+}
+.compForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+    padding: 30px;
+    border: 2px solid rgb(238, 173, 241); /* Add white border to form content */
+    border-radius: 10px; /* Rounded corners for the border */
+    background-color: rgb(33, 1, 42); /* White background for the form content */
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1vw; /* Margin above each group */
+}
+
+.form-group label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color:white;/* Dark label color for contrast */
+}
+
+.form-group input, .form-group textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background-color: #f8f9fa; /* Light background for input fields */
+    color: #000; /* Dark text color */
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    border-color: #007bff; /* Blue border on focus */
+}
+
+textarea {
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 100px; /* Minimum height for the textarea */
+}
+
+button[type="submit"] {
+    padding: 10px;
+    background-color: #75099f; /* Bootstrap primary color */
+    color: rgb(255, 255, 255); /* White text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #56245b; /* Darker shade on hover */
+}
+
+.prevGriev {
+    margin-top: 20px; /* Space above the link */
+    padding:20px;
+    font-size: 14px; /* Smaller font for the link */
+    text-align: center; /* Center the link */
+}
+
+.prevGriev a {
+    color: #007bff; /* Link color */
+    text-decoration: none; /* No underline */
+}
+
+.prevGriev a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
