@@ -4,7 +4,7 @@ import './GrievDetails.css';
 
 export default function GrievDetails() {
   const location = useLocation();
-  const navigate = useNavigate();
+ 
   const grievance = location.state.grievance;
   const [successMessage, setSuccessMessage] = useState(null);
   const [statusUpdate, setStatusUpdate] = useState(grievance.status);
@@ -14,9 +14,7 @@ export default function GrievDetails() {
     const updatedGrievance = { ...grievance, status: statusUpdate,  assignee };
 
     setSuccessMessage(`Grievance ${grievance.id} updated successfully!!`);
-    setTimeout(() => {
-      navigate('/assigneeDashboard', { state: { updatedGrievance } }); 
-    }, 1000);
+   
   };
 
   return (
