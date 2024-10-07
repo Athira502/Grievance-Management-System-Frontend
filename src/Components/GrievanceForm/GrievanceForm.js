@@ -8,34 +8,36 @@ export default function GrievanceForm({ submittedGrievances, setSubmittedGrievan
     const [product, setProduct] = useState('');
     const [description, setDescription] = useState('');
     const navigate = useNavigate();
-   
 
     // Function to handle form submission
     const submitGrievance = (e) => {
         e.preventDefault();
+
+        // Ensure submittedGrievances is defined
+        const currentGrievances = submittedGrievances || [];
         
         const newGrievance = {
-            id: submittedGrievances.length + 1,
+            id: currentGrievances.length + 1,
             product,
             description,
-            assignee: 'John Doe', // You can assign a default or dynamic value here
-            category: 'Software', // You can add a form input for category or assign a default
+            assignee: 'John Doe', // Default or dynamic value
+            category: 'Software', // Default category
             status: 'Pending', // New grievances start with 'Pending'
             createdAt: new Date().toISOString()
         };
         
-        setSubmittedGrievances([newGrievance, ...submittedGrievances]);
-    
+        // Update submitted grievances state
+        setSubmittedGrievances([newGrievance, ...currentGrievances]);
+
         // Clear form fields after submission
         setName('');
         setEmail('');
         setProduct('');
         setDescription('');
-    
+
         alert('Grievance submitted successfully!');
         navigate('/PreviousGrievances'); // Navigate to previous grievances after submission
     };
-    
 
     return (
         <div className='grievForm'>
@@ -81,13 +83,9 @@ export default function GrievanceForm({ submittedGrievances, setSubmittedGrievan
             </form>
 
             {/* Link to navigate to previous grievances page */}
-            <div>
+            <div className="prevGriev">
                 <Link to="/PreviousGrievances">View Previously Submitted Grievances</Link>
             </div>
         </div>
     );
 }
-
-
-
-

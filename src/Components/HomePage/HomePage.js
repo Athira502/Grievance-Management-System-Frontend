@@ -4,7 +4,7 @@ import './HomePage.css';
 export default function Homepage() {
   return (
     <div className="homepage">
-      <div className="content-wrapper">
+      <div className="main">
         <h1>Grievance Management System</h1>
         <h2 className="description">Solution to all your digital problems</h2>
         

@@ -1,49 +1,81 @@
-
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import './GrievDetails.css'; 
+import { useLocation } from 'react-router-dom';
+import './GrievDetails.css'; // Assuming you have a separate CSS file
 
-export default function GrievDetails() {
+export default function GrievanceDetails() {
   const location = useLocation();
-  const navigate = useNavigate();
-  const grievance = location.state.grievance;
-  const [successMessage, setSuccessMessage] = useState(null);
+  const grievance = location.state.grievance; // Restoring grievance variable
+  const [message, setMessage] = useState(null); // For displaying success message
+  const [currentStatus, setCurrentStatus] = useState(grievance.status); // Managing status updates
+  const [assignedPerson, setAssignedPerson] = useState(grievance.assignee || ''); // Managing assignee
 
-  const [statusUpdate, setStatusUpdate] = useState(grievance.status);
+  // Handle form submission
+  const onSubmit = () => {
+    const updatedGrievance = {
+      ...grievance,
+      status: currentStatus,
+      assignee: assignedPerson
+    };
 
-  const handleSubmit = () => {
-    const updatedGrievance = { ...grievance, status: statusUpdate };
-
-    setSuccessMessage(`Grievance ${grievance.id} updated successfully!!`);
-    setTimeout(() => {
-      navigate('/assigneeDashboard', { state: { updatedGrievance } }); 
-    }, 1000);
+    // Show the success message
+    setMessage(`Grievance ID ${grievance.id} has been updated`);
   };
 
   return (
-    <div className="detailsContainer">
-      <h1>Grievance Details</h1>
-      {successMessage ? (<p className="successMessage">{successMessage}</p>) :
-        (grievance && (
-          <div className="outerForm">
-            <p className='details'><strong>Grievance No:</strong> {grievance.id}</p>
-            <p className='details'><strong>Email:</strong> {grievance.user.email}</p>
-           <p className='details'><strong>Issue:</strong> {grievance.description}</p>
-            <p className='details'><strong>Status:</strong> {grievance.status}</p>
+    <div className="infoContainer">
+      <h1>Grievance Information</h1>
+      {message ? (
+        <p className="successMessage">{message}</p>
+      ) : (
+        grievance && (
+          <div className="formWrapper">
+            <div className="grievanceDetails">
+              <p className="detailItem">User: {grievance.user.name}</p>
+              <p className="detailItem">Email: {grievance.user.email}</p>
+              <p className="detailItem">Description: {grievance.description}</p>
+              <p className="detailItem">Current Status: {grievance.status}</p>
+            </div>
 
-            <div className="updateStatus">
-              <label htmlFor={`status-${grievance.id}`}>Update Status:</label>
-              <select id={`status-${grievance.id}`} value={statusUpdate} onChange={(e) => setStatusUpdate(e.target.value)} className='update-select'>
-                <option value="PENDING">Work is yet to start</option>
-                <option value="IN_PROGRESS">We're working on it</option>
-                <option value="RESOLVED">Work is done</option>
+            {/* Dropdown to update status */}
+            <div className="statusUpdate">
+              <label htmlFor={`status-${grievance.id}`}>Change Status:</label>
+              <select
+                id={`status-${grievance.id}`}
+                value={currentStatus}
+                onChange={(e) => setCurrentStatus(e.target.value)}
+                className="statusSelect"
+              >
+                <option value="PENDING">Pending</option>
+                <option value="IN_PROGRESS">In Progress</option>
+                <option value="RESOLVED">Resolved</option>
               </select>
             </div>
-          
-            <button className="submitBtn" onClick={handleSubmit}>Submit</button>
+
+            {/* Dropdown for assignee */}
+            <div className="assignSection">
+              <label htmlFor={`assignee-${grievance.id}`}>Assign To:</label>
+              <select
+                id={`assignee-${grievance.id}`}
+                value={assignedPerson}
+                onChange={(e) => setAssignedPerson(e.target.value)}
+                className="assigneeSelect"
+              >
+                <option value="">Select Assignee</option>
+                <option value="Suresh">Suresh</option>
+                <option value="Krishna">Krishna</option>
+                <option value="Daya">Daya</option>
+                <option value="Sidhique">Sidhique</option>
+                <option value="Vijay">Vijay</option>
+              </select>
+            </div>
+
+            {/* Submit button */}
+            <button className="submitButton" onClick={onSubmit}>
+              Update
+            </button>
           </div>
-        ))
-      }
+        )
+      )}
     </div>
   );
 }

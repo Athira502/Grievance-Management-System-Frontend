@@ -1,6 +1,8 @@
 import './SuperVisorDashboard.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { base_url } from '../Config/Config';
 
 function SuperVDashboard() {
 
@@ -8,43 +10,21 @@ function SuperVDashboard() {
   const [grievances, setGrievances] = useState([]);
 
   useEffect(() => {
-    const grievances = [
-      {
-        id: 1,
-        user: { name: 'Mary', email: 'mary@user1.com'},
-        description: 'Issue regarding the cloud services',
-        status: 'PENDING',
-        category: 'Cloud',
-        assignee: 'Sidhique',
-      },
-      {
-        id: 2,
-        user: { name: 'Sural', email: 'user2@gmail.com'},
-        description: 'High network usage and bandwidth issues',
-        status: 'under maintanance',
-        category: 'network related',
-        assignee: 'Krishna',
-      },
-      {
-        id: 3,
-        user: { name: 'Gayathri', email: 'user2@gmail.com'},
-        description: 'Unable to access the db',
-        status: 'Pending',
-        category: 'Database',
-        assignee: 'Daya',
-      },
-      {
-        id: 4,
-        user: { name: 'Bond', email: 'user4@gmail.com'},
-        description: 'Several customers are unable to login ',
-        status: 'PENDING',
-        category: 'Office customer App',
-        assignee: 'Sidhique',
+   const fetchGrievances= async () =>{
+      try{
+       const response = await axios.get(`${base_url} /grievances/all`,{withCredentials:true})
+       console.log(response.data);
+       setGrievances(grievances);
+     }
+      
+      catch(error){
+        console.log(error)
       }
-    ];
 
-    const sortedGrievances = grievances.sort((a, b) => new Date(b.assignedDate) - new Date(a.assignedDate));
-    setGrievances(sortedGrievances);
+   }
+   fetchGrievances();
+
+
   }, []);
 
   const handleRowSelect = (grievance) => {

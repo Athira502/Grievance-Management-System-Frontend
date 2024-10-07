@@ -1,6 +1,68 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
+import axios from 'axios';
+
+
+export default function HomePage() {
+  const [login, setLogin] = useState({ email: '', password: ''});
+  const [errMsg, seterrMsg] = useState(null);
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {setLogin({ ...login, [e.target.name]: e.target.value });};
+
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+    if (login.email === 'user@gmail.com' && login.password === 'userpassword') {
+      navigate('/GrievanceForm'); // Redirect to customer dashboard
+    } else if (login.email === 'supervisor@gmail.com' && login.password === 'supervisorpassword') {
+      navigate('/supervDashboard'); // Redirect to supervisor dashboard
+    } else if (login.email === 'assignee@gmail.com' && login.password === 'assigneepassword') {
+      navigate('/assigneeDashboard'); // Redirect to assignee dashboard
+    } else {
+      seterrMsg('Login failed.');
+    }
+  };
+  
+  return (
+    <div className="loginPage">
+      <h1>LOGIN</h1>
+      <form className="loginForm" onSubmit={handleLoginSubmit}>
+        <div className="formGroup">
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={login.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="formGroup">
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={login.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="formGroup">
+          <button type="submit" className="submitButton">Login</button>
+        </div>
+        {errMsg && <div style={{ color: 'red' }}>{errMsg}</div>}
+      </form>
+    </div>
+  );}
+  
+  
+  
+  
+  
+  /*import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './LoginPage.css';
 
 
 export default function HomePage() {
@@ -59,3 +121,5 @@ export default function HomePage() {
       </form>
     </div>
   );}
+
+  */
