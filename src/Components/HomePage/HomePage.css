@@ -2,94 +2,94 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-}
-
-.homepage {
-    max-width: 100vw;
-    min-height: 100vh; /* Full viewport height */
-    padding: 20px;
-    background-image: linear-gradient(to bottom, #7a4d73, black);
-    background-size: cover; /* Ensure the gradient covers the entire space */
-    color: black;
     font-family: sans-serif;
 }
 
-.description{
-    background-image: linear-gradient(to right, #ffffff, #7a4d73);
-    padding: 50px;
-    margin: 20px;
-    text-align: center;
+.homepage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, #7a4d73, black);
+    background-size: cover;
 }
 
-.ch1 h2:hover, .ch2 h2:hover {
-    color: white;
-    font-weight: 600;
+.content-wrapper {
+    text-align: center;
+    color: #ffffff;
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.description {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+}
+
+.choicemid {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.ch1, .ch2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    border-radius: 15px;
+    width: 45%;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
 }
 
 .register {
-    height: 4vw;
-    width: 20vw;
-    border-radius: 15px;
     background-color: #06213a;
-    margin-top: 2vw;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    text-decoration: none;
     border: none;
-    display: inline-block; /* Ensures the anchor tag inside the button is properly aligned */
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.register a {
+    color: white;
+    text-decoration: none;
 }
 
 .register:hover {
     background-color: #b40c0c;
 }
 
-
-
-.register, a {
-    text-decoration: none;
-    color: white;
-    font-size: 2vw;
-}
-
-.ch1, .ch2 {
-    text-align: center; /* Centers the content within each block */
-}
-
-.choicemid {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around; /* Ensure equal space between elements */
-    align-items: center; /* Vertically aligns the blocks */
-    margin: 3vw; 
-    padding:50px;
-}
-
-.ch1, .ch2 {
-    width: 45%; /* Ensures equal width for both sections */
-    padding: 32px;
-    box-sizing: border-box; /* Ensures padding doesn’t affect the width */
-    background-color: rgba(255, 255, 255, 0.1); /* Optional, for better visibility */
-    border-radius: 15px; /* Optional, for rounded corners */
-}
-
 @media only screen and (max-width: 600px) {
-    .homeLogin {
-        margin-top: 2vw;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        text-align: start;
-    }
-
-    .homePage h1 {
-        font-size: 7vw;
-    }
-
     .choicemid {
-        flex-direction: column; /* Stacks elements vertically on small screens */
-        margin: 0; /* Adjust margin for smaller viewports */
+        flex-direction: column;
+        margin-top: 20px;
     }
 
     .ch1, .ch2 {
-        width: 100%; /* Full width on mobile screens */
-        margin-bottom: 20px; /* Adds space between the two sections */
-        padding: 20px; /* Adjust padding for smaller screens */
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .description {
+        font-size: 1.5rem;
     }
 }

@@ -5,9 +5,9 @@ import Signup from './Components/SignupPage/Signup';
 import LoginPage from './Components/LoginPage/LoginPage';
 import HomePage from './Components/HomePage/HomePage';
 import AssigneeDashboard from './Components/AssigneeDashboard/AssigneeDashboard';
-import SuperVDashboard from './Components/SupervisorDashboard/SuperVDashboard';
+import SuperVDashboard from './Components/SupervisorDashboard/SuperVisorDashboard';
 import GrievDetails from './Components/GrievDetails/GrievDetails';
-import DetailsSuperVisor from './Components/GrievDetails/DetailsSuperVisor';
+import DetailsSuperVisor from './Components/SupervisorGDetails/DetailsSuperVisor';
 import GrievanceForm from './Components/GrievanceForm/GrievanceForm';
 import PreviousGrievances from './Components/PreviousGrievances/PreviousGrievances';
 

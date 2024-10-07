@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import './GrievDetails.css'; 
+import { useLocation } from 'react-router-dom';
+import './DetailsSuperVisor.css'; 
 
 export default function GrievDetails() {
   const location = useLocation();
- 
   const grievance = location.state.grievance;
   const [successMessage, setSuccessMessage] = useState(null);
   const [statusUpdate, setStatusUpdate] = useState(grievance.status);
@@ -13,7 +12,7 @@ export default function GrievDetails() {
   const handleSubmit = () => {
     const updatedGrievance = { ...grievance, status: statusUpdate,  assignee };
 
-    setSuccessMessage(`Grievance ${grievance.id} updated successfully!!`);
+    setSuccessMessage(`${grievance.id} updated`);
    
   };
 
