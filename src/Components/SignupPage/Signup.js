@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Signup.css';
+import axios from 'axios';
+import { base_url } from '../Config/Config';
 
 export default function Signup() {
    const [form, setForm] = useState({ name: '', mail: '', pw: '' });
@@ -10,16 +12,24 @@ export default function Signup() {
       setForm({ ...form, [e.target.name]: e.target.value });
    };
 
-   const handleSubmit = (e) => {
+   const handleSubmit = async(e) => {
       e.preventDefault();
 
-      if (form.mail === 'Ahaan@123.com') {
+      try{
+       const response= await axios.post(`${base_url}/user/create`,form);
+       setLogMsg("Account created. Kimdly log in");
+      }
+      catch(error){
+         setErrmsg("Failed. Try again later")
+      }
+
+      /*if (form.mail === 'Ahaan@123.com') {
          setErrmsg('Existing user. Please Log in.');
          setLogMsg(null);  // Clear success message if error occurs
       } else {
          setLogMsg('Account created. Kindly Log In');
          setErrmsg(null);  // Clear error message if success occurs
-      }
+      }*/
    };
 
    return (

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './PreviousGrievances.css';
@@ -13,7 +14,6 @@ export default function PreviousGrievances({ submittedGrievances = [] }) {
                         <thead>
                             <tr>
                                 <th>Grievance Id</th>
-                                <th>Product</th>
                                 <th>Category</th>
                                 <th>Description</th>
                                 <th>Assignee</th>
@@ -25,10 +25,9 @@ export default function PreviousGrievances({ submittedGrievances = [] }) {
                             {submittedGrievances.map((grievance) => (
                                 <tr key={grievance.id}>
                                     <td>{grievance.id}</td>
-                                    <td>{grievance.product}</td> {/* Product name */}
                                     <td>{grievance.category}</td>
                                     <td>{grievance.description}</td>
-                                    <td>{grievance.assignee}</td> {/* Assignee */}
+                                    <td>{grievance.assignee}</td> 
                                     <td>{new Date(grievance.createdAt).toLocaleString()}</td>
                                     <td>{grievance.status}</td>
                                 </tr>
@@ -42,3 +41,5 @@ export default function PreviousGrievances({ submittedGrievances = [] }) {
         </div>
     );
 }
+
+

@@ -1,24 +1,44 @@
+
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './GrievanceForm.css';
+import axios from 'axios';
+import { base_url } from '../Config/Config';
 
 export default function GrievanceForm({ submittedGrievances, setSubmittedGrievances }) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [product, setProduct] = useState('');
+    const [category_name, setCategory_name] = useState('');
     const [description, setDescription] = useState('');
     const navigate = useNavigate();
 
     // Function to handle form submission
-    const submitGrievance = (e) => {
+    const submitGrievance = async(e) => {
         e.preventDefault();
+        try{
+            const response1 = await axios.post(`${base_url}/user/create`,{name,email},{withCredentials:true})
+            console.log(response1);
+            const response2 = await axios.post(`${base_url}/category/create`,{category_name},{withCredentials:true})
+            console.log(response2);
+            const response3 = await axios.post(`${base_url}/grievances`,{description},{withCredentials:true})
+            console.log(response3);
+
+            
+            
+          }
+           
+           catch(error){
+             console.log(error)
+           }
+     
 
         // Ensure submittedGrievances is defined
         const currentGrievances = submittedGrievances || [];
         
         const newGrievance = {
             id: currentGrievances.length + 1,
-            product,
+            category_name,
             description,
             assignee: 'John Doe', // Default or dynamic value
             category: 'Software', // Default category
@@ -32,7 +52,7 @@ export default function GrievanceForm({ submittedGrievances, setSubmittedGrievan
         // Clear form fields after submission
         setName('');
         setEmail('');
-        setProduct('');
+        setCategory_name('');
         setDescription('');
 
         alert('Grievance submitted successfully!');
@@ -66,8 +86,8 @@ export default function GrievanceForm({ submittedGrievances, setSubmittedGrievan
                     <label>Product: </label>
                     <input
                         type="text"
-                        value={product}
-                        onChange={(e) => setProduct(e.target.value)}
+                        value={category_name}
+                        onChange={(e) => setCategory_name(e.target.value)}
                         required
                     />
                 </div>
@@ -82,10 +102,12 @@ export default function GrievanceForm({ submittedGrievances, setSubmittedGrievan
                 <button type="submit">Submit Grievance</button>
             </form>
 
-            {/* Link to navigate to previous grievances page */}
+         
             <div className="prevGriev">
                 <Link to="/PreviousGrievances">View Previously Submitted Grievances</Link>
             </div>
         </div>
     );
 }
+
+

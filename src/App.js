@@ -21,6 +21,10 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<Signup />} />
+          
+                
+                
+            
           <Route 
             path='/GrievanceForm' 
             element={
@@ -42,6 +46,7 @@ function App() {
           <Route path='/supervDashboard' element={<SuperVDashboard />} />
           <Route path='/grievance-list/:id' element={<GrievDetails />} />
           <Route path='/grievances/:id' element={<DetailsSuperVisor />} />
+          
         </Routes>
       </div>
     </Router>

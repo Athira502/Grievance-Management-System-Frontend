@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 import axios from 'axios';
+import { base_url } from '../Config/Config';
 
 
 export default function HomePage() {
@@ -13,6 +14,15 @@ export default function HomePage() {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
+
+    /*try{
+      const response = await axios.post(`${base_url}/user/create`,login);
+
+
+    }
+    catch(error){
+      console.log(error);
+    }*/
     if (login.email === 'user@gmail.com' && login.password === 'userpassword') {
       navigate('/GrievanceForm'); // Redirect to customer dashboard
     } else if (login.email === 'supervisor@gmail.com' && login.password === 'supervisorpassword') {
